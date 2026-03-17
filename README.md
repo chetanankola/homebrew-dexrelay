@@ -26,4 +26,4 @@ Publishing notes:
 
 1. Host the current payload files on `https://assets.cankolabuilds.com/`
 2. Update checksums in `Formula/dexrelay.rb` when those payload files change
-3. Push this formula into the tap repo that users will run `brew tap` against
+3. Push this formula into `github.com/chetanankola/homebrew-dexrelay`
