@@ -36,12 +36,12 @@ class Dexrelay < Formula
 
   resource "governancectl.py" do
     url "https://assets.cankolabuilds.com/governancectl.py"
-    sha256 "448d4c1e631c3b75ca1a6e3c343cac7ebb665a406e7a525d4e220f1abd990c0a"
+    sha256 "19aef3fe0a9a0f9969051f792355c5c66af539f27702c65d481b33230a525a33"
   end
 
   resource "services.registry.json" do
     url "https://assets.cankolabuilds.com/services.registry.json"
-    sha256 "4c6123eced73d51e09c962971b91d356b78645b8bb61abf8c4c58b71cd895a3e"
+    sha256 "1b459dbe5ae219cdc278eb1d0c086236ba28855edeb7223f20e57429f7dd026d"
   end
 
   def install
