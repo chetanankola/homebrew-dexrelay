@@ -26,7 +26,7 @@ class Dexrelay < Formula
 
   resource "create-mac-project.sh" do
     url "https://assets.cankolabuilds.com/create-mac-project.sh"
-    sha256 "19e901529702f1232b9d8c019239eff8a0c30d23309ff4390081d958e7b8a0b4"
+    sha256 "c56897dfa1454fd6b5cc2e388c61521624281b20c4d3dc00877deb8c856cd85c"
   end
 
   resource "git-project-automation.sh" do
