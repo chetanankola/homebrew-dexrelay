@@ -2,8 +2,8 @@ class Dexrelay < Formula
   desc "DexRelay installer and CLI for the Codex Relay Mac runtime"
   homepage "https://assets.cankolabuilds.com/setup-guide.html"
   url "https://assets.cankolabuilds.com/install.sh"
-  sha256 "3a33d7d6d257ac28f5d554acc3de7ec5afec33cc8870478c3aac722028ad4c60"
-  version "0.1.1"
+  sha256 "7ee8352de2e5bda341ed602421ff5dd2a12b55129bfd33e925b3d9dd8ed59210"
+  version "0.1.2"
 
   depends_on "jq"
   depends_on "node"
