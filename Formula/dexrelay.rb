@@ -2,8 +2,8 @@ class Dexrelay < Formula
   desc "DexRelay installer and CLI for the Codex Relay Mac runtime"
   homepage "https://assets.cankolabuilds.com/setup-guide.html"
   url "https://assets.cankolabuilds.com/install.sh"
-  sha256 "2a537bd7ccc105c680d65cd0bf4be225231ddd748b3e87749345e55a27773704"
-  version "0.1.0"
+  sha256 "3a33d7d6d257ac28f5d554acc3de7ec5afec33cc8870478c3aac722028ad4c60"
+  version "0.1.1"
 
   depends_on "jq"
   depends_on "node"
@@ -11,12 +11,12 @@ class Dexrelay < Formula
 
   resource "bridge.js" do
     url "https://assets.cankolabuilds.com/bridge.js"
-    sha256 "3a6df9c1e72c01600f500970ef7016caf4b6431ad663ea8d32caf6d23c266f23"
+    sha256 "91547a5640af9384b4348e2d7504f9abbaab82f1f1345bc70c0b377d8bc13261"
   end
 
   resource "helper.py" do
     url "https://assets.cankolabuilds.com/helper.py"
-    sha256 "d3a46c967bb09557b3ee69c795ef172e0eefd3951a6f20e713e8f184d1a76a8f"
+    sha256 "cc08feb0a0f58dff09037715182915b85068b6c6c3c63311e28b6183f0b863cc"
   end
 
   resource "package.json" do
