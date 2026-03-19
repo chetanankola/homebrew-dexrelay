@@ -3,7 +3,7 @@ class Dexrelay < Formula
   homepage "https://assets.cankolabuilds.com/setup-guide.html"
   url "https://assets.cankolabuilds.com/install.sh"
   sha256 "15db54ebb134909fa0cc6b4c44b4c2b423e03d82ba83c4534fcf0e04e96be624"
-  version "0.1.5"
+  version "0.1.6"
 
   depends_on "jq"
   depends_on "node"
@@ -26,7 +26,7 @@ class Dexrelay < Formula
 
   resource "dexrelay" do
     url "https://assets.cankolabuilds.com/dexrelay"
-    sha256 "30c69069e9b1f37b6aa98941d8d7b99f021d7bb07253712c5ccef4f8137de277"
+    sha256 "170d00be07753cfc0cd4296698b47743bf10940e8ba7491729280be31fc8f9e8"
   end
 
   resource "create-mac-project.sh" do
@@ -66,8 +66,17 @@ class Dexrelay < Formula
     end
 
     resource("dexrelay").stage do
-      bin.install "dexrelay"
+      (libexec/"payload").install "dexrelay"
     end
+
+    (bin/"dexrelay").write <<~EOS
+      #!/usr/bin/env bash
+      set -euo pipefail
+      export CODEX_RELAY_INSTALL_SCRIPT="#{libexec}/install.sh"
+      export CODEX_RELAY_LOCAL_PAYLOAD_ROOT="#{libexec}/payload"
+      export CODEX_RELAY_CLI_VERSION="#{version}"
+      exec "#{libexec}/payload/dexrelay" "$@"
+    EOS
 
     resource("create-mac-project.sh").stage do
       (libexec/"payload").install "create-mac-project.sh"
@@ -86,6 +95,7 @@ class Dexrelay < Formula
     end
 
     chmod 0755, bin/"dexrelay"
+    chmod 0755, libexec/"payload/dexrelay"
   end
 
   test do
