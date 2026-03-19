@@ -3,7 +3,7 @@ class Dexrelay < Formula
   homepage "https://assets.cankolabuilds.com/setup-guide.html"
   url "https://assets.cankolabuilds.com/install.sh"
   sha256 "15db54ebb134909fa0cc6b4c44b4c2b423e03d82ba83c4534fcf0e04e96be624"
-  version "0.1.4"
+  version "0.1.5"
 
   depends_on "jq"
   depends_on "node"
@@ -66,7 +66,7 @@ class Dexrelay < Formula
     end
 
     resource("dexrelay").stage do
-      (bin/"dexrelay").install "dexrelay"
+      bin.install "dexrelay"
     end
 
     resource("create-mac-project.sh").stage do
