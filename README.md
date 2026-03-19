@@ -27,13 +27,14 @@ Operational commands:
 ```bash
 dexrelay status
 dexrelay repair
+dexrelay uninstall
 ```
 
 - `status` reports launch agents, ports, Tailscale host, and helper health
 - `repair` restarts the bridge/helper and falls back to a reinstall if needed
+- `uninstall` removes the runtime, launch agents, logs, and Homebrew CLI
 
 Publishing notes:
 
-1. Host the current payload files on `https://assets.cankolabuilds.com/`
-2. Update checksums in `Formula/dexrelay.rb` when those payload files change
-3. Push this formula into `github.com/chetanankola/homebrew-dexrelay`
+1. Run `./scripts/release-dexrelay.sh` from the main repo
+2. Let that script upload the payload, update the checksums, push the tap repo, and run the brew smoke test

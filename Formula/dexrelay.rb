@@ -3,7 +3,7 @@ class Dexrelay < Formula
   homepage "https://assets.cankolabuilds.com/setup-guide.html"
   url "https://assets.cankolabuilds.com/install.sh"
   sha256 "15db54ebb134909fa0cc6b4c44b4c2b423e03d82ba83c4534fcf0e04e96be624"
-  version "0.1.6"
+  version "0.1.7"
 
   depends_on "jq"
   depends_on "node"
@@ -26,7 +26,7 @@ class Dexrelay < Formula
 
   resource "dexrelay" do
     url "https://assets.cankolabuilds.com/dexrelay"
-    sha256 "170d00be07753cfc0cd4296698b47743bf10940e8ba7491729280be31fc8f9e8"
+    sha256 "da31bb8db6ade7df4704f874c331f14065cecc466977947f327641727767821d"
   end
 
   resource "create-mac-project.sh" do
