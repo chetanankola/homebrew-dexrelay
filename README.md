@@ -22,6 +22,16 @@ What `dexrelay install` does:
 - installs the setup helper on port `4616`
 - writes the user LaunchAgents and starts them
 
+Operational commands:
+
+```bash
+dexrelay status
+dexrelay repair
+```
+
+- `status` reports launch agents, ports, Tailscale host, and helper health
+- `repair` restarts the bridge/helper and falls back to a reinstall if needed
+
 Publishing notes:
 
 1. Host the current payload files on `https://assets.cankolabuilds.com/`

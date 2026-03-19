@@ -2,8 +2,8 @@ class Dexrelay < Formula
   desc "DexRelay installer and CLI for the Codex Relay Mac runtime"
   homepage "https://assets.cankolabuilds.com/setup-guide.html"
   url "https://assets.cankolabuilds.com/install.sh"
-  sha256 "7ee8352de2e5bda341ed602421ff5dd2a12b55129bfd33e925b3d9dd8ed59210"
-  version "0.1.2"
+  sha256 "15db54ebb134909fa0cc6b4c44b4c2b423e03d82ba83c4534fcf0e04e96be624"
+  version "0.1.4"
 
   depends_on "jq"
   depends_on "node"
@@ -11,17 +11,22 @@ class Dexrelay < Formula
 
   resource "bridge.js" do
     url "https://assets.cankolabuilds.com/bridge.js"
-    sha256 "91547a5640af9384b4348e2d7504f9abbaab82f1f1345bc70c0b377d8bc13261"
+    sha256 "a6d292209ad29f9060bf7ccc4537c62839ece3537999960052b52309b0a4601a"
   end
 
   resource "helper.py" do
     url "https://assets.cankolabuilds.com/helper.py"
-    sha256 "cc08feb0a0f58dff09037715182915b85068b6c6c3c63311e28b6183f0b863cc"
+    sha256 "b0549f62a897b1bf5723031acbcd72c98c8a43ec6914de25e2cf8bbaf371d909"
   end
 
   resource "package.json" do
     url "https://assets.cankolabuilds.com/package.json"
     sha256 "435266209d1bf19be7848462bab8250ae433d63c5bc750029ecfa483164d0323"
+  end
+
+  resource "dexrelay" do
+    url "https://assets.cankolabuilds.com/dexrelay"
+    sha256 "30c69069e9b1f37b6aa98941d8d7b99f021d7bb07253712c5ccef4f8137de277"
   end
 
   resource "create-mac-project.sh" do
@@ -60,6 +65,10 @@ class Dexrelay < Formula
       (libexec/"payload").install "package.json"
     end
 
+    resource("dexrelay").stage do
+      (bin/"dexrelay").install "dexrelay"
+    end
+
     resource("create-mac-project.sh").stage do
       (libexec/"payload").install "create-mac-project.sh"
     end
@@ -76,58 +85,10 @@ class Dexrelay < Formula
       (libexec/"payload").install "services.registry.json"
     end
 
-    (bin/"dexrelay").write <<~EOS
-      #!/usr/bin/env bash
-      set -euo pipefail
-
-      case "${1:-install}" in
-        install)
-          shift || true
-          export CODEX_RELAY_LOCAL_PAYLOAD_ROOT="#{libexec}/payload"
-          exec /bin/bash "#{libexec}/install.sh" "$@"
-          ;;
-        doctor)
-          cat <<EOF
-      DexRelay via Homebrew
-      - formula version: #{version}
-      - install script: #{libexec}/install.sh
-      - payload root: #{libexec}/payload
-      - runtime root: ${CODEX_RELAY_ROOT:-$HOME/src/CodexRelayBackendBootstrap}
-      - bridge port: ${CODEX_RELAY_BRIDGE_PORT:-4615}
-      - helper port: ${CODEX_RELAY_HELPER_PORT:-4616}
-      EOF
-          ;;
-        version|-v|--version)
-          echo "dexrelay #{version}"
-          ;;
-        help|-h|--help)
-          cat <<'EOF'
-      dexrelay
-
-      Usage:
-        dexrelay install
-        dexrelay doctor
-        dexrelay version
-      EOF
-          ;;
-        *)
-          echo "Unknown command: ${1}" >&2
-          exit 1
-          ;;
-      esac
-    EOS
-
     chmod 0755, bin/"dexrelay"
   end
 
-  def caveats
-    <<~EOS
-      Finish setup with:
-        dexrelay install
-    EOS
-  end
-
   test do
-    assert_match "dexrelay #{version}", shell_output("#{bin}/dexrelay version")
+    assert_match "dexrelay", shell_output("#{bin}/dexrelay version")
   end
 end
